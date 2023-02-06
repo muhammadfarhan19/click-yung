@@ -1,17 +1,38 @@
-const waktu = document.getElementById("waktu");
+// const waktu = ;
 const text = document.getElementById("text");
 const btn = document.getElementById("btn");
-const waktuSapa = document.getElementById("waktu-sapa");
-const lagu = document.getElementById("lagu");
-const content = document.getElementById('content')
+// const lagu = ;
+const content = document.getElementById("content");
+const container = document.querySelector(".container");
+
+// const load = () => {
+//   content.style.display = "none";
+// };
+
+btn.addEventListener("click", (e) => {
+  // e.preventDefault();
+  container.innerHTML = `
+      <div class="content" id="content">
+        <audio src="lagu.mp3" type="audio/mpeg" id="lagu"></audio>
+        <div class="waktu" id="waktu">00:00</div>
+        <div class="text" id="text">Santun <span id="waktu-sapa">siang</span> hadir support</div>
+      </div>
+  `;
+  // getTime();
+  document.getElementById("lagu").play();
+});
+
+
 
 const getTime = () => {
   const clock = new Date();
   const hour = clock.getHours();
   const minute = clock.getMinutes();
   const second = clock.getSeconds();
-  waktu.innerHTML = `${hour} : ${minute} : ${second}`;
-
+  document.getElementById("waktu").innerHTML = `${hour} : ${minute} : ${second}`;
+  
+  const waktuSapa = document.getElementById("waktu-sapa");
+  
   if (hour <= 10) {
     waktuSapa.innerHTML = "pagi";
   }
@@ -24,15 +45,7 @@ const getTime = () => {
   if (hour >= 18) {
     waktuSapa.innerHTML = "malam";
   }
+
 };
 setInterval(getTime, 1000);
 
-const load = () => {
-  content.style.display = 'none';
-}
-
-btn.addEventListener('click', (e) => {
-  e.preventDefault();
-  content.style.display = 'flex';
-  lagu.play();
-})
